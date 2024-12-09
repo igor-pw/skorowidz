@@ -31,9 +31,9 @@ void wypisz_skorowidz( skorowidz_t *skorowidz ) {
     if( skorowidz->vec->counter[i] > 0 ) {
 	int numkd = 0;
       	printf( "słowo \"%s\" wystąpiło w liniach:", skorowidz->slowa[i] );
-      	for(int j = 0; j <= skorowidz->vec->counter[i]; j++)		//while( skorowidz->vec->tab[i][numkd] != NULL, tab[i][numkd] to int wiec nie mozna porownywac z NULL, 
+      	for(int j = 1; j <= skorowidz->vec->counter[i]; j++)		//while( skorowidz->vec->tab[i][numkd] != NULL, tab[i][numkd] to int wiec nie mozna porownywac z NULL, 
 	{
-        	printf( " %d", skorowidz->vec->tab[i][numkd] );
+        	printf( " %d", skorowidz->vec->tab[i][numkd+1] );
 		numkd++;
 	}
       printf( "\n" );
