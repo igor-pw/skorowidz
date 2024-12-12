@@ -4,7 +4,7 @@
 dyn_vec2D_t init_dyn_vec2D(int argc)
 {
 	dyn_vec2D_t vec = malloc(sizeof *vec);
-	vec->tab = malloc(sizeof(int) * (argc-2));
+	vec->tab = malloc(sizeof vec->tab * (argc-2));
 	vec->size = malloc(sizeof(int) * (argc-2));
 	vec->counter = malloc(sizeof(int) * (argc-2));	
 	
@@ -13,14 +13,14 @@ dyn_vec2D_t init_dyn_vec2D(int argc)
 	{
 		vec->counter[i] = 0;
 		vec->size[i] = 4;
-		vec->tab[i] = malloc(sizeof(int) * vec->size[i]);
+		vec->tab[i] = malloc(sizeof(int) * 4);
 	}
 	return vec;
 }
 
-dyn_vec2D_t add_to_dyn_vec2D(dyn_vec2D_t vec, int index, int line) 
+void add_to_dyn_vec2D(dyn_vec2D_t vec, int index, int line) 
 {
-	if(vec->size[index] == vec->counter[index]+1)
+	if(vec->size[index] == vec->counter[index])
 	{
 		vec->size[index] *= 2;
 		vec->tab[index] = realloc(vec->tab[index], sizeof(int) * vec->size[index]);
@@ -31,6 +31,17 @@ dyn_vec2D_t add_to_dyn_vec2D(dyn_vec2D_t vec, int index, int line)
 	{
 		vec->tab[index][vec->counter[index]] = line;
 	}	
-
-		return vec;	
 }
+
+void free_dyn_vec2D(dyn_vec2D_t vec, int argc)
+{
+	for(int i = 0; i < argc-2; i++)
+		free(vec->tab[i]);
+
+	free(vec->tab);
+	free(vec->size);
+	free(vec->counter);
+	
+	free(vec);
+}
+

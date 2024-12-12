@@ -6,7 +6,6 @@
 typedef struct {
 	int ile_slow;
 	char **slowa;  
-	int *licznik;   	// w ilu liniach występują słowa
 	dyn_vec2D_t vec;  	//wskaznik na strukture
 } skorowidz_t;
 	
